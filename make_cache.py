@@ -11,6 +11,7 @@ import json
 import time
 import pickle
 import dateutil.parser
+import time
 
 from sqlite3 import dbapi2 as sqlite3
 from utils import safe_pickle_dump, Config
@@ -31,9 +32,9 @@ idf = meta['idf']
 print('decorating the database with additional information...')
 for pid,p in db.items():
   timestruct = dateutil.parser.parse(p['updated'])
-  p['time_updated'] = int(timestruct.strftime("%s")) # store in struct for future convenience
+  p['time_updated'] = int(time.mktime(timestruct.timetuple())) # store in struct for future convenience
   timestruct = dateutil.parser.parse(p['published'])
-  p['time_published'] = int(timestruct.strftime("%s")) # store in struct for future convenience
+  p['time_published'] = int(time.mktime(timestruct.timetuple())) # store in struct for future convenience
 
 print('computing min/max time for all papers...')
 tts = [time.mktime(dateutil.parser.parse(p['updated']).timetuple()) for pid,p in db.items()]

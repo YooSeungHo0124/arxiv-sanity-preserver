@@ -7,12 +7,13 @@ import os
 import time
 import shutil
 from subprocess import Popen
+import sys
 
 from utils import Config
 
 # make sure imagemagick is installed
-if not shutil.which('convert'): # shutil.which needs Python 3.3+
-  print("ERROR: you don\'t have imagemagick installed. Install it first before calling this script")
+if not shutil.which('magick'): # Windows ImageMagick 7 uses `magick`
+  print("ERROR: you don\'t have ImageMagick (magick) installed. Install it first before calling this script")
   sys.exit()
 
 # create if necessary the directories we're using for processing and output
@@ -50,8 +51,7 @@ for i,p in enumerate(pdf_files):
       f = os.path.join(Config.tmp_dir, 'thumb-%d.png' % (i,))
       f2= os.path.join(Config.tmp_dir, 'thumbbuf-%d.png' % (i,))
       if os.path.isfile(f):
-        cmd = 'mv %s %s' % (f, f2)
-        os.system(cmd)
+        shutil.move(f, f2)
         # okay originally I was going to issue an rm call, but I am too terrified of
         # running scripted rm queries, so what we will do is instead issue a "mv" call
         # to rename the files. That's a bit safer, right? We have to do this because if
@@ -60,7 +60,7 @@ for i,p in enumerate(pdf_files):
 
   # spawn async. convert can unfortunately enter an infinite loop, have to handle this.
   # this command will generate 8 independent images thumb-0.png ... thumb-7.png of the thumbnails
-  pp = Popen(['convert', '%s[0-7]' % (pdf_path, ), '-thumbnail', 'x156', os.path.join(Config.tmp_dir, 'thumb.png')])
+  pp = Popen(['magick', '%s[0-7]' % (pdf_path, ), '-thumbnail', 'x156', os.path.join(Config.tmp_dir, 'thumb.png')])
   t0 = time.time()
   while time.time() - t0 < 20: # give it 15 seconds deadline
     ret = pp.poll()
@@ -76,10 +76,10 @@ for i,p in enumerate(pdf_files):
   if not os.path.isfile(os.path.join(Config.tmp_dir, 'thumb-0.png')):
     # failed to render pdf, replace with missing image
     missing_thumb_path = os.path.join('static', 'missing.jpg')
-    os.system('cp %s %s' % (missing_thumb_path, thumb_path))
+    shutil.copyfile(missing_thumb_path, thumb_path)
     print("could not render pdf, creating a missing image placeholder")
   else:
-    cmd = "montage -mode concatenate -quality 80 -tile x1 %s %s" % (os.path.join(Config.tmp_dir, 'thumb-*.png'), thumb_path)
+    cmd = "magick montage -mode concatenate -quality 80 -tile x1 %s %s" % (os.path.join(Config.tmp_dir, 'thumb-*.png'), thumb_path)
     print(cmd)
     os.system(cmd)
 
