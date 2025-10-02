@@ -1,4 +1,64 @@
 
+안녕하세요!
+기본적인 README.md는 하단에 적혀있는 제가 fork했던 내용입니다.
+
+다만 기존의 코드로는 몇가지 동작하는데 에러가 있어 제가 python 코드 몇가지 수정했습니다.
+그리고 이것은 제가 가상환경에서 사용한 패키지들의 버전입니다.
+참고 부탁드려요.
+| Package            | Version    |
+|--------------------|-----------|
+| blinker            | 1.9.0     |
+| certifi            | 2025.8.3  |
+| charset-normalizer | 3.4.3     |
+| click              | 8.3.0     |
+| colorama           | 0.4.6     |
+| Deprecated         | 1.2.18    |
+| dnspython          | 2.8.0     |
+| feedparser         | 6.0.12    |
+| Flask              | 2.1.3     |
+| Flask-Limiter      | 1.5       |
+| future             | 1.0.0     |
+| idna               | 3.10      |
+| itsdangerous       | 2.2.0     |
+| Jinja2             | 3.1.6     |
+| joblib             | 1.5.2     |
+| limits             | 5.6.0     |
+| markdown-it-py     | 4.0.0     |
+| MarkupSafe         | 3.0.3     |
+| mdurl              | 0.1.2     |
+| numpy              | 2.3.3     |
+| oauthlib           | 3.3.1     |
+| ordered-set        | 4.1.0     |
+| packaging          | 25.0      |
+| pip                | 25.2      |
+| Pygments           | 2.19.2    |
+| pymongo            | 4.15.2    |
+| python-dateutil    | 2.9.0.post0|
+| python-twitter     | 3.5       |
+| pytz               | 2025.2    |
+| requests           | 2.32.5    |
+| requests-oauthlib  | 2.0.0     |
+| rich               | 14.1.0    |
+| scikit-learn       | 1.7.2     |
+| scipy              | 1.16.2    |
+| setuptools         | 80.9.0    |
+| sgmllib3k          | 1.0.0     |
+| six                | 1.17.0    |
+| threadpoolctl      | 3.6.0     |
+| tornado            | 6.5.2     |
+| typing_extensions  | 4.15.0    |
+| urllib3            | 2.5.0     |
+| Werkzeug           | 2.0.3     |
+| wrapt              | 1.17.3    |
+
+
+
+
+
+
+
+
+
 # arxiv sanity preserver
 
 **Update Nov 27, 2021**: you may wish to look at my from-scratch re-write of arxiv-sanity: [arxiv-sanity-lite](https://github.com/karpathy/arxiv-sanity-lite). It is a smaller version of arxiv-sanity that focuses on the core value proposition, is significantly less likely to ever go down, scales better, and has a few additional goodies such as multiple possible tags per account, regular emails of new papers of interest, etc. It is also running live on [arxiv-sanity-lite.com](https://arxiv-sanity-lite.com).
