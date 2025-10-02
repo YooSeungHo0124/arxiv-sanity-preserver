@@ -52,6 +52,10 @@
 | wrapt              | 1.17.3    |
 
 
+<img width="532" height="90" alt="image" src="https://github.com/user-attachments/assets/e645f5cb-c80c-4733-ad53-73c238cc0f85" />
+그리고 기존과 다르게 상단 배너, title 정도만 제 이름으로 좀 바꿨습니다...!
+다른 분들은 본인 배너를 꾸며보는건 어떨까요? 저는 이정도만 하겠습니다.
+
 
 
 
